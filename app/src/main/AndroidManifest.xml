@@ -1,0 +1,26 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="net.thebrennt.anycut">
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:icon="@drawable/app_icon">
+        <activity android:name=".FrontDoorActivity"
+            android:label="@string/app_name"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CreateShortcutActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_SHORTCUT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ActivityPickerActivity"
+            android:label="@string/activityShortcutActivityTitle"/>
+        <activity android:name=".CustomShortcutCreatorActivity"
+            android:label="@string/customShortcutActivityTitle"/>
+    </application>
+</manifest>
