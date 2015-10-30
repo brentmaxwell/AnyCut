@@ -18,6 +18,7 @@ package net.thebrennt.anycut;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,6 +31,7 @@ import android.widget.Toast;
  */
 public class FrontDoorActivity extends Activity implements OnClickListener {
     private static final int REQUEST_SHORTCUT = 1;
+    private static final int REQUEST_QUICKSETTING = 2;
 
     @Override
     protected void onCreate(Bundle savedState) {
@@ -42,6 +44,10 @@ public class FrontDoorActivity extends Activity implements OnClickListener {
         if (view != null) {
             view.setOnClickListener(this);
         }
+        View settingview = findViewById(R.id.newQuickSetting);
+        if (settingview != null) {
+            settingview.setOnClickListener(this);
+        }
     }
 
     public void onClick(View view) {
@@ -50,6 +56,12 @@ public class FrontDoorActivity extends Activity implements OnClickListener {
                 // Start the activity to create a shortcut intent
                 Intent intent = new Intent(this, CreateShortcutActivity.class);
                 startActivityForResult(intent, REQUEST_SHORTCUT);
+                break;
+            }
+            case R.id.newQuickSetting: {
+                // Start the activity to create a shortcut intent
+                Intent intent = new Intent(this, CreateShortcutActivity.class);
+                startActivityForResult(intent, REQUEST_QUICKSETTING);
                 break;
             }
         }
@@ -66,6 +78,19 @@ public class FrontDoorActivity extends Activity implements OnClickListener {
                 // Boradcast an intent that tells the home screen to create a new shortcut
                 result.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
                 sendBroadcast(result);
+
+                // Inform the user that the shortcut has been created
+                Toast.makeText(this, R.string.shortcutCreated, Toast.LENGTH_SHORT).show();
+            }
+            case REQUEST_QUICKSETTING: {
+                // Boradcast an intent that tells the home screen to create a new shortcut
+
+                Intent tileConfigurationIntent = new BroadcastTileIntentBuilder(this, "net.thebrent." + result.getStringExtra(Intent.EXTRA_SHORTCUT_NAME).replace(' ','_'))
+                        .setLabel(result.getStringExtra(Intent.EXTRA_SHORTCUT_NAME))
+                        .setOnClickBroadcast(result)
+                        .build();
+
+                sendBroadcast(tileConfigurationIntent);
 
                 // Inform the user that the shortcut has been created
                 Toast.makeText(this, R.string.shortcutCreated, Toast.LENGTH_SHORT).show();

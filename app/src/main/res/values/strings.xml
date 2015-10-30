@@ -45,4 +45,5 @@
 	<string name="shortcutType">Type</string>
 	
 	<string name="errorEmptyName">Name cannot be empty</string>
+    <string name="newQuickSetting">New Quick Setting</string>
 </resources>

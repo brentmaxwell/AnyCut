@@ -37,7 +37,15 @@
 <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/editShortcut" android:id="@+id/editShortcut" android:layout_marginBottom="10dip"></Button>
 -->
 
-<View android:layout_width="fill_parent" android:layout_height="0dip" android:layout_weight="1" />
+	<Button
+		android:id="@+id/newQuickSetting"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/newQuickSetting"
+		android:layout_marginBottom="5dip"
+		android:layout_gravity="center_horizontal" />
+
+	<View android:layout_width="fill_parent" android:layout_height="0dip" android:layout_weight="1" />
 
 <TextView android:layout_marginBottom="5dip" android:layout_height="wrap_content" android:text="@string/welcomeString2" android:textAppearance="?android:attr/textAppearanceMedium" android:gravity="center_horizontal" android:layout_width="fill_parent" android:textColor="?android:attr/textColorSecondary" android:padding="3dip"></TextView>
 
